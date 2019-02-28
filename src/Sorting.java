@@ -1,23 +1,22 @@
 public class Sorting {
 
 
-    public static int[] simpleSort(int priorities[]) // can use this instead of bubble sort
-    { for (int i = 0; i < priorities.length - 1; i++) {
+    public static int[] simpleSort(int arr[]) // can use this instead of bubble sort
+    {
+        for (int i = 0; i < arr.length - 1; i++) {
             int index = i;
-            for (int j = i + 1; j < priorities.length; j++)
-                if (priorities[j] < priorities[index])
+            for (int j = i + 1; j < arr.length; j++)
+                if (arr[j] < arr[index])
                     index = j;
 
-            int smallerNumber = priorities[index];
-            priorities[index] = priorities[i];
-            priorities[i] = smallerNumber;
+            int smallerNumber = arr[index];
+            arr[index] = arr[i];
+            arr[i] = smallerNumber;
         }
-        return priorities;
+        return arr;
     }
 
-
-
-    public static int[] bubbleSort(int arr[])
+    public static int[] bubbleSort(int arr[]) //implements a bubble sort
     {
         int n = arr.length;
         for (int i = 0; i < n-1; i++)

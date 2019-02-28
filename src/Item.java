@@ -7,7 +7,7 @@ public class Item extends StandardItem{
     private double itemPrice;
     private boolean purchased = false;
 
-    public Item(String itemName){
+    public Item(String itemName) { // inherited from standardItem
         super(itemName);
     }
 
@@ -34,7 +34,6 @@ public class Item extends StandardItem{
     }
 
     public boolean equals(Item itemInput){
-
         // self check
         if (this == itemInput){
             return true;}
@@ -53,6 +52,7 @@ public class Item extends StandardItem{
                 Objects.equals(purchased, itemInput.purchased);
     }
 
+    // Setters
     public void setItemNumber(int itemNumberInput) {
         itemNumber = itemNumberInput;
     }
@@ -99,6 +99,8 @@ public class Item extends StandardItem{
         return purchased;
     }
 
+
+    // put item names into a list of strings
     public static String[] itemNamesToString(Item[] list) {
 
         String[] newList = new String[list.length];
@@ -109,6 +111,7 @@ public class Item extends StandardItem{
         return newList;
     }
 
+    // put item priorities into a list of strings
     public static int[] itemPriorityToString(Item[] list) {
 
         int[] newList = new int[list.length];
@@ -119,6 +122,7 @@ public class Item extends StandardItem{
         return newList;
     }
 
+    // check if item name is already in a given list
     public static boolean itemInList(Item[] list, String item) {
         int matchCounter = 0;
         boolean isNew = true;
@@ -131,6 +135,7 @@ public class Item extends StandardItem{
         return isNew;
     }
 
+    // checks the priority of an item in a given list
     public static boolean priorityInList(Item[] list, int item) {
         int matchCounter = 0;
         boolean isNew = true;

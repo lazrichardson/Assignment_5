@@ -42,7 +42,7 @@ public class User {
         budget = money;
     }
 
-    public void goShopping(ShoppingList list) {
+    public void goShopping(ShoppingList list) { // used to purchase items
         for (int i = 0; i < list.getShoppingList().length; i++) {
 
             if (list.getShoppingList()[i].getItemPrice() <= budget) {
