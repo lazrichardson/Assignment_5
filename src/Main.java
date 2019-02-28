@@ -20,7 +20,7 @@ public class Main {
             itemArray[i] = new Item();
             int itemNum = (i + 1);
             itemArray[0].setItemNumber(itemNum);
-            itemArray[i].setItemPrice(10.25 + (i * 4)); // set prices for each item
+            itemArray[i].setItemPrice(5.25 + (i * 4)); // set prices for each item
         }
 
 // input item names
@@ -53,7 +53,7 @@ public class Main {
         for (int i = 0; i < itemArray.length; i++) {
 
             boolean isNew = true;
-            do{
+            do { // user input for purchase priorities + rejections of dupes / too high or low
                 System.out.println("\nInput an purchase priority for: " + itemArray[i].getItemName() +
                         "\nThis number should be between 1 and " + itemArray.length);
 
@@ -84,9 +84,11 @@ public class Main {
 // going shopping
         user.goShopping(cart);
 
+// show purchases
         System.out.println("\nYou purchased....\n");
         cart.getPurchasedItems(cart);
 
+// show not purchased
         System.out.println("\nYou didn't have enough money to purchase...\n");
         cart.getNotPurchasedItems(cart);
 
