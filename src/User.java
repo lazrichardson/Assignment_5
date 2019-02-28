@@ -45,9 +45,7 @@ public class User {
     public void goShopping(ShoppingList list) {
         for (int i = 0; i < list.getShoppingList().length; i++) {
 
-            if (list.getShoppingList()[i].getItemPrice() > budget) {
-                break;
-            } else if (list.getShoppingList()[i].getItemPrice() < budget) {
+            if (list.getShoppingList()[i].getItemPrice() <= budget) {
                 budget = (budget - list.getShoppingList()[i].getItemPrice());
                 list.getShoppingList()[i].setPurchased(true);
             }

@@ -1,7 +1,7 @@
 import java.util.Objects;
 import java.util.Arrays;
 
-public class ShoppingList extends Item {
+public class ShoppingList {
 
     private Item[] shoppingList = new Item[7];
 
@@ -31,9 +31,10 @@ public class ShoppingList extends Item {
         return isEqual;
     }
 
-    public Item[] setShoppingList(Item[] itemArray) {
+    public Item[] setShoppingList(Item[] itemArray) { // this sets the shopping list based on the item priorities input by user
 
-        int[] priorities = new int[itemArray.length];
+        int[] priorities = new int[itemArray.length];  // stores priorities as int
+        int[] sortedPriorities = new int[itemArray.length]; // stores sorted priorities
         Item[] sortedItems = new Item[itemArray.length];
 
 
@@ -42,21 +43,12 @@ public class ShoppingList extends Item {
             priorities[i] = itemArray[i].getItemPriority();
         }
 
-        for (int i = 0; i < priorities.length - 1; i++) {
-            int index = i;
-            for (int j = i + 1; j < priorities.length; j++)
-                if (priorities[j] < priorities[index])
-                    index = j;
-
-            int smallerNumber = priorities[index];
-            priorities[index] = priorities[i];
-            priorities[i] = smallerNumber;
-        }
+        sortedPriorities = Sorting.bubbleSort(priorities);
 
         for(int i = 0; i < itemArray.length; i++){
 
             for(int j = 0; j < itemArray.length; j++){
-                if (priorities[j] == itemArray[i].getItemPriority()){
+                if (sortedPriorities[j] == itemArray[i].getItemPriority()){
                     sortedItems[j] = itemArray[i];
                 }
 
@@ -71,7 +63,7 @@ public class ShoppingList extends Item {
         return shoppingList;
     }
 
-    public void getPurchasedItems(ShoppingList list) {
+    public void getPurchasedItems(ShoppingList list) { // used for presentation of purchased items at end of main
         for (int i = 0; i < list.getShoppingList().length; i++) {
 
             if (list.getShoppingList()[i].getPurchased()) {
@@ -81,7 +73,7 @@ public class ShoppingList extends Item {
         }
     }
 
-    public void getNotPurchasedItems(ShoppingList list) {
+    public void getNotPurchasedItems(ShoppingList list) { // used for presentation of not purchased items at end of main
         for (int i = 0; i < list.getShoppingList().length; i++) {
 
             if (!list.getShoppingList()[i].getPurchased()) {

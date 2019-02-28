@@ -1,14 +1,17 @@
 import java.util.Objects;
 
-public class Item {
+public class Item extends StandardItem{
     private int  itemNumber;
     private String itemName;
     private int itemPriority;
     private double itemPrice;
     private boolean purchased = false;
 
+    public Item(String itemName){
+        super(itemName);
+    }
 
-    public Item(){
+    public Item (){
         this.itemNumber = -100;
         this.itemName = "no input";
         this.itemPriority = -1;
@@ -17,12 +20,13 @@ public class Item {
     }
 
     public Item(int itemNumber, String itemName, int itemPriority){
+        super(itemName);
         this.itemNumber = itemNumber;
-        this.itemName = itemName;
         this.itemPriority = itemPriority;
     }
 
     public Item(int itemNumber, String itemName, int itemPriority, boolean purchased){
+        super(itemName);
         this.itemNumber = itemNumber;
         this.itemName = itemName;
         this.itemPriority = itemPriority;
@@ -61,10 +65,10 @@ public class Item {
         itemPriority = itemPriorityInput;
     }
 
-
     public void setItemPrice(double itemPriceInput) {
         itemPrice = itemPriceInput;
     }
+
     public void setPurchased(boolean itemWasPurchased){
         purchased = itemWasPurchased;
     }
@@ -76,13 +80,10 @@ public class Item {
         return itemNumber;
     }
 
-
     public String getItemName()
     {
         return itemName;
     }
-
-
 
     public int getItemPriority()
     {
@@ -141,5 +142,8 @@ public class Item {
         }
         return isNew;
     }
+
+
+
 
 }

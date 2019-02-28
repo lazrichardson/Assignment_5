@@ -20,7 +20,7 @@ public class Main {
             itemArray[i] = new Item();
             int itemNum = (i + 1);
             itemArray[0].setItemNumber(itemNum);
-            itemArray[i].setItemPrice(40.25 + (i * 4)); // set prices for each item
+            itemArray[i].setItemPrice(10.25 + (i * 4)); // set prices for each item
         }
 
 // input item names
