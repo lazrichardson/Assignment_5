@@ -1,12 +1,14 @@
 import java.util.Objects;
 
-public class User {
+public class User implements Information {
     private String userId;
     private double budget;
+    private String nameOfUser;
 
     public User(){
         this.userId = "notAssigned";
         this.budget = 0;
+        this.nameOfUser = "notAssigned";
     }
 
     public double getBudget(){
@@ -15,6 +17,14 @@ public class User {
 
     public String getUserId(){
         return userId;
+    }
+
+    public String getNameOfUser() {
+        return nameOfUser;
+    }
+
+    public String getName() {
+        return nameOfUser;
     }
 
     public boolean equals(User user){
@@ -40,6 +50,10 @@ public class User {
 
     public void setBudget(double money){
         budget = money;
+    }
+
+    public void setNameOfUser(String name) {
+        nameOfUser = name;
     }
 
     public void goShopping(ShoppingList list) { // used to purchase items

@@ -46,7 +46,7 @@ public class Main {
         System.out.println("Here's the list of items you input... \n");
 
         for (int i = 0; i < itemArray.length; i++) {
-            System.out.println((i + 1) + ": " + itemArray[i].getItemName());
+            System.out.println((i + 1) + ": " + itemArray[i].getName());
         }
 
 // user input for item priorities
@@ -54,7 +54,7 @@ public class Main {
 
             boolean isNew = true;
             do { // user input for purchase priorities + rejections of dupes / too high or low
-                System.out.println("\nInput an purchase priority for: " + itemArray[i].getItemName() +
+                System.out.println("\nInput an purchase priority for: " + itemArray[i].getName() +
                         "\nThis number should be between 1 and " + itemArray.length);
 
                 intInput = keyboard.nextInt();

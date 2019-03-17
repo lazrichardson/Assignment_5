@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class Item extends StandardItem implements ItemInformation {
+public class Item extends StandardItem implements Information {
     private int  itemNumber;
     private String itemName;
     private int itemPriority;
@@ -82,6 +82,10 @@ public class Item extends StandardItem implements ItemInformation {
 
     public String getItemName()
     {
+        return itemName;
+    }
+
+    public String getName() {
         return itemName;
     }
 
