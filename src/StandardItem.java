@@ -1,4 +1,4 @@
-abstract class StandardItem {
+abstract class StandardItem implements Information {
 
     private String itemName;
 
@@ -18,5 +18,11 @@ abstract class StandardItem {
     {
         return itemName;
     }
+
+    public String getName() {
+        return itemName;
+    }
+
+
 
 }
