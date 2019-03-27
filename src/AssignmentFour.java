@@ -11,8 +11,9 @@ public class AssignmentFour {
         ShoppingList cart = new ShoppingList();
         User user = new User();
 
-// set the user's budget
-        user.setBudget(59.00);
+// request + set the user's budget
+        System.out.println("Please input your budget");
+        user.setBankAccount(59.00);
 
 // create the items + set prices
         for (int i = 0; i < itemArray.length; i++) {
