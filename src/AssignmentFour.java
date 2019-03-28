@@ -100,11 +100,10 @@ public class AssignmentFour {
 
         for (int i = 0; i < cart.getShoppingList().length; i++) {
             outputStream.println(
-                    "Price: " + cart.getShoppingList()[i].getItemPrice() +
-                            "Priority: " + cart.getShoppingList()[i].getItemPriority() +
-                            "Item Number: " + cart.getShoppingList()[i].getItemNumber() +
-                            "Item Name: " + cart.getShoppingList()[i].getItemName() +
-                            "Name: " + cart.getShoppingList()[i].getName() +
+                    "Price: " + cart.getShoppingList()[i].getItemPrice() + "\n" +
+                            "Priority: " + cart.getShoppingList()[i].getItemPriority() + "\n" +
+                            "Item Number: " + cart.getShoppingList()[i].getItemNumber() + "\n" +
+                            "Item Name: " + cart.getShoppingList()[i].getItemName() + "\n" +
                             "Purchased: " + cart.getShoppingList()[i].getPurchased()
             );
         }
