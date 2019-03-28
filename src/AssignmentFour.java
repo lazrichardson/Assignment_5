@@ -85,39 +85,20 @@ public class AssignmentFour {
         cart.setShoppingList(itemArray);
 
 // going shopping
-        String fileName = "out.txt"; // set the name of the output file
-
-        PrintWriter outputStream = null;
-        try {
-            outputStream = new PrintWriter(fileName);
-        } catch (FileNotFoundException e) {
-            System.out.println("Error opening the file " +
-                    fileName);
-            System.exit(0);
-        }
-
         user.goShopping(cart); // go shopping
-
-        for (int i = 0; i < cart.getShoppingList().length; i++) {
-            outputStream.println(
-                    "Price: " + cart.getShoppingList()[i].getItemPrice() + "\n" +
-                            "Priority: " + cart.getShoppingList()[i].getItemPriority() + "\n" +
-                            "Item Number: " + cart.getShoppingList()[i].getItemNumber() + "\n" +
-                            "Item Name: " + cart.getShoppingList()[i].getItemName() + "\n" +
-                            "Purchased: " + cart.getShoppingList()[i].getPurchased()
-            );
-        }
-        outputStream.close();
-
 
 // show purchases
         System.out.println("\nYou purchased....\n");
-        cart.getPurchasedItems(cart);
+        // cart.getPurchasedItems(cart);
+        cart.writeItems(cart, true);
+        cart.readItems(cart, true);
+
 
 // show not purchased
         System.out.println("\nYou didn't have enough money to purchase...\n");
-        cart.getNotPurchasedItems(cart);
-
+        //  cart.getNotPurchasedItems(cart);
+        cart.writeItems(cart, false);
+        cart.readItems(cart, false);
     }
 }
 

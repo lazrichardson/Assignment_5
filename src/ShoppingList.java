@@ -1,5 +1,11 @@
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Objects;
 import java.util.Arrays;
+import java.io.PrintWriter;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.io.File;
 
 public class ShoppingList {
 
@@ -45,10 +51,10 @@ public class ShoppingList {
 
         sortedPriorities = Sorting.bubbleSort(priorities);
 
-        for(int i = 0; i < itemArray.length; i++){
+        for (int i = 0; i < itemArray.length; i++) {
 
-            for(int j = 0; j < itemArray.length; j++){
-                if (sortedPriorities[j] == itemArray[i].getItemPriority()){
+            for (int j = 0; j < itemArray.length; j++) {
+                if (sortedPriorities[j] == itemArray[i].getItemPriority()) {
                     sortedItems[j] = itemArray[i];
                 }
 
@@ -83,6 +89,62 @@ public class ShoppingList {
         }
     }
 
+    public void writeItems(ShoppingList list, boolean purchased) { //
+
+        String fileName = null;
+
+        if (purchased) {
+            fileName = "purchased.txt"; // set the name of the output file
+        } else if (!purchased) {
+            fileName = "notPurchased.txt"; // set the name of the output file
+        }
+
+        PrintWriter outputStream = null;
+
+        try {
+            outputStream = new PrintWriter(fileName);
+        } catch (FileNotFoundException e) {
+            System.out.println("Error opening the file " +
+                    fileName);
+            System.exit(0);
+        }
+
+        {
+            for (int i = 0; i < list.getShoppingList().length; i++)
+                if (purchased == (list.getShoppingList()[i].getPurchased())) {
+                    outputStream.println("Item: " + list.getShoppingList()[i].getItemName()
+                            + " | Price: $" + list.getShoppingList()[i].getItemPrice());
+                }
+            outputStream.close();
+
+
+        }
+    }
+
+    public void readItems(ShoppingList list, boolean purchased) { //
+
+        String fileName = null;
+        Scanner inputStream = null;
+
+
+        if (purchased) {
+            fileName = "purchased.txt"; // set the name of the output file
+        } else if (!purchased) {
+            fileName = "notPurchased.txt"; // set the name of the output file
+        }
+
+        try {
+            inputStream = new Scanner(new File(fileName));
+        } catch (FileNotFoundException e) {
+            System.out.println("Error opening the file " +
+                    fileName);
+            System.exit(0);
+        }
+        while (inputStream.hasNextLine()) {
+            String line = inputStream.nextLine();
+            System.out.println(line);
+        }
+    }
 }
 
 
