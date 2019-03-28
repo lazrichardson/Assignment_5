@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.io.PrintWriter;
+import java.io.FileNotFoundException;
 
 public class AssignmentFour {
     public static void main(String[] args) {
@@ -83,7 +85,31 @@ public class AssignmentFour {
         cart.setShoppingList(itemArray);
 
 // going shopping
-        user.goShopping(cart);
+        String fileName = "out.txt"; // set the name of the output file
+
+        PrintWriter outputStream = null;
+        try {
+            outputStream = new PrintWriter(fileName);
+        } catch (FileNotFoundException e) {
+            System.out.println("Error opening the file " +
+                    fileName);
+            System.exit(0);
+        }
+
+        user.goShopping(cart); // go shopping
+
+        for (int i = 0; i < cart.getShoppingList().length; i++) {
+            outputStream.println(
+                    "Price: " + cart.getShoppingList()[i].getItemPrice() +
+                            "Priority: " + cart.getShoppingList()[i].getItemPriority() +
+                            "Item Number: " + cart.getShoppingList()[i].getItemNumber() +
+                            "Item Name: " + cart.getShoppingList()[i].getItemName() +
+                            "Name: " + cart.getShoppingList()[i].getName() +
+                            "Purchased: " + cart.getShoppingList()[i].getPurchased()
+            );
+        }
+        outputStream.close();
+
 
 // show purchases
         System.out.println("\nYou purchased....\n");
