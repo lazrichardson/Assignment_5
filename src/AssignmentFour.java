@@ -92,7 +92,7 @@ public class AssignmentFour {
         user.goShopping(cart); // go shopping
 
 // show shopping list
-        user.printString("Here is the shopping list....\n");
+        user.printString("Here is the shopping list before shopping....\n");
         cart.writeItems(cart, true, true);
         cart.readItems(cart, true, true);
 
@@ -104,7 +104,7 @@ public class AssignmentFour {
 
 
 // show not purchased
-        System.out.println("\nYou didn't have enough money to purchase...\n");
+        System.out.println("\nHere's the shopping list after shopping \na.k.a you didn't have enough money to purchase...\n");
         //  cart.getNotPurchasedItems(cart);
         cart.writeItems(cart, false, false);
         cart.readItems(cart, false, false);

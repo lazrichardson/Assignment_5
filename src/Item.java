@@ -6,6 +6,7 @@ public class Item extends StandardItem implements Information {
     private int itemPriority;
     private double itemPrice;
     private boolean purchased = false;
+    private int numItems;
 
     public Item(String itemName) { // inherited from standardItem
         super(itemName);
@@ -17,6 +18,7 @@ public class Item extends StandardItem implements Information {
         this.itemPriority = -1;
         this.itemPrice = -1;
         this.purchased = false;
+        this.numItems = -1;
     }
 
     public Item(int itemNumber, String itemName, int itemPriority){
