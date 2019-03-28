@@ -14,8 +14,11 @@ public class AssignmentFour {
         User user = new User();
 
 // request + set the user's budget
-        System.out.println("Please input your budget");
-        user.setBankAccount(59.00);
+        user.printString("Please input your budget" + "\n");
+        user.setBankAccount(keyboard.nextDouble());
+        user.printString("You have $");
+        user.printDouble(user.getBankAccount());
+        user.printString(" in your bank account \n");
 
 // create the items + set prices
         for (int i = 0; i < itemArray.length; i++) {
@@ -81,24 +84,36 @@ public class AssignmentFour {
             } while(isNew);
         }
 
+
 // assign the input to a shopping list
         cart.setShoppingList(itemArray);
 
 // going shopping
         user.goShopping(cart); // go shopping
 
+// show shopping list
+        user.printString("Here is the shopping list....\n");
+        cart.writeItems(cart, true, true);
+        cart.readItems(cart, true, true);
+
 // show purchases
         System.out.println("\nYou purchased....\n");
         // cart.getPurchasedItems(cart);
-        cart.writeItems(cart, true);
-        cart.readItems(cart, true);
+        cart.writeItems(cart, true, false);
+        cart.readItems(cart, true, false);
 
 
 // show not purchased
         System.out.println("\nYou didn't have enough money to purchase...\n");
         //  cart.getNotPurchasedItems(cart);
-        cart.writeItems(cart, false);
-        cart.readItems(cart, false);
+        cart.writeItems(cart, false, false);
+        cart.readItems(cart, false, false);
+
+// show remainder of bank account
+        user.printString("\nHere is your remaining bank balance: $");
+        System.out.format("%.2f%n", user.getBankAccount());
     }
+
+
 }
 

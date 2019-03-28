@@ -22,7 +22,4 @@ abstract class StandardItem implements Information {
     public String getName() {
         return itemName;
     }
-
-
-
 }

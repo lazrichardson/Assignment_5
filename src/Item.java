@@ -152,6 +152,17 @@ public class Item extends StandardItem implements Information {
         return isNew;
     }
 
+    public void printString(String s) {
+        System.out.println(s);
+
+    }
+
+    public void printDouble(Double d) {
+        System.out.println(d);
+
+    }
+
+
 
 
 

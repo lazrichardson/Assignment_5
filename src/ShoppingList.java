@@ -89,16 +89,19 @@ public class ShoppingList {
         }
     }
 
-    public void writeItems(ShoppingList list, boolean purchased) { //
+    public void writeItems(ShoppingList list, boolean purchased, boolean ignorePurchased) { //
 
         String fileName = null;
 
-        if (purchased) {
-            fileName = "purchased.txt"; // set the name of the output file
-        } else if (!purchased) {
-            fileName = "notPurchased.txt"; // set the name of the output file
+        if (ignorePurchased) {
+            fileName = "shoppingList.txt"; // set the name of the output file
+        } else if (!ignorePurchased) {
+            if (purchased) {
+                fileName = "purchased.txt"; // set the name of the output file
+            } else if (!purchased) {
+                fileName = "notPurchased.txt"; // set the name of the output file
+            }
         }
-
         PrintWriter outputStream = null;
 
         try {
@@ -109,7 +112,13 @@ public class ShoppingList {
             System.exit(0);
         }
 
-        {
+        if (ignorePurchased) {
+            for (int i = 0; i < list.getShoppingList().length; i++) {
+                outputStream.println("Item: " + list.getShoppingList()[i].getItemName()
+                        + " | Price: $" + list.getShoppingList()[i].getItemPrice());
+            }
+            outputStream.close();
+        } else if (!ignorePurchased) {
             for (int i = 0; i < list.getShoppingList().length; i++)
                 if (purchased == (list.getShoppingList()[i].getPurchased())) {
                     outputStream.println("Item: " + list.getShoppingList()[i].getItemName()
@@ -121,17 +130,21 @@ public class ShoppingList {
         }
     }
 
-    public void readItems(ShoppingList list, boolean purchased) { //
+    public void readItems(ShoppingList list, boolean purchased, boolean ignorePurchased) { //
 
         String fileName = null;
         Scanner inputStream = null;
 
-
-        if (purchased) {
-            fileName = "purchased.txt"; // set the name of the output file
-        } else if (!purchased) {
-            fileName = "notPurchased.txt"; // set the name of the output file
+        if (ignorePurchased) {
+            fileName = "shoppingList.txt"; // set the name of the output file
+        } else if (!ignorePurchased) {
+            if (purchased) {
+                fileName = "purchased.txt"; // set the name of the output file
+            } else if (!purchased) {
+                fileName = "notPurchased.txt"; // set the name of the output file
+            }
         }
+
 
         try {
             inputStream = new Scanner(new File(fileName));

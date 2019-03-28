@@ -67,6 +67,16 @@ public class User implements Information {
         }
     }
 
+    public void printString(String s) {
+        System.out.print(s);
+
+    }
+
+    public void printDouble(Double d) {
+        System.out.print(d);
+
+    }
+
 
 
 
