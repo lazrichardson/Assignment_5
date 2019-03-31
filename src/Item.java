@@ -102,6 +102,10 @@ public class Item extends StandardItem implements Information {
         return purchased;
     }
 
+    public int getnumItems() {
+        return numItems;
+    }
+
 
     // put item names into a list of strings
     public static String[] itemNamesToString(ArrayList<Item> list) {
