@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class User implements Information {
@@ -56,15 +57,47 @@ public class User implements Information {
         nameOfUser = name;
     }
 
-    public void goShopping(ShoppingList list) { // used to purchase items
-        for (int i = 0; i < list.getShoppingList().length; i++) {
+    public void goShopping(ArrayList<Item> list) { // used to purchase items
+        for (int i = 0; i < list.size(); i++) {
 
-            if (list.getShoppingList()[i].getItemPrice() <= bankAccount) {
-                bankAccount = (bankAccount - list.getShoppingList()[i].getItemPrice());
-                list.getShoppingList()[i].setPurchased(true);
+            if (list.get(i).getItemPrice() <= bankAccount) {
+                Item item = list.get(i);
+                bankAccount = (bankAccount - item.getItemPrice());
+                item.setPurchased(true);
+                item.setNumItemsPurchased(item.getNumItemsPurchased() + 1);
             }
-
         }
+    }
+
+    public void prioritizeShoppingList(ArrayList<Item> itemArray) { // this sets the shopping list based on the item priorities input by user
+
+        int[] priorities = new int[itemArray.size()];  // stores priorities as int
+        int[] sortedPriorities = new int[itemArray.size()]; // stores sorted priorities
+        Item[] sortedItems = new Item[itemArray.size()];
+
+
+        for (int i = 0; i < itemArray.size(); i++) {
+            // put item priorities into array of ints
+            priorities[i] = itemArray.get(i).getItemPriority();
+        }
+
+        sortedPriorities = Sorting.bubbleSort(priorities);
+
+        for (int i = 0; i < itemArray.size(); i++) {
+
+            for (int j = 0; j < itemArray.size(); j++) {
+                if (sortedPriorities[j] == itemArray.get(i).getItemPriority()) {
+                    sortedItems[j] = itemArray.get(i);
+                }
+
+            }
+        }
+
+        // copy to an array list
+        for (int i = 0; i < itemArray.size(); i++) {
+            itemArray.set(i, sortedItems[i]);
+        }
+
     }
 
     public void printString(String s) {
@@ -76,8 +109,6 @@ public class User implements Information {
         System.out.print(d);
 
     }
-
-
 
 
 }

@@ -1,19 +1,25 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Scanner;
+
 
 public class Item extends StandardItem implements Information {
-    private int  itemNumber;
+    private int itemNumber;
     private String itemName;
     private int itemPriority;
     private double itemPrice;
     private boolean purchased = false;
     private int numItems;
+    private int numItemsPurchased;
 
     public Item(String itemName) { // inherited from standardItem
         super(itemName);
     }
 
-    public Item (){
+    public Item() {
         this.itemNumber = -100;
         this.itemName = "no input";
         this.itemPriority = -1;
@@ -22,13 +28,13 @@ public class Item extends StandardItem implements Information {
         this.numItems = -1;
     }
 
-    public Item(int itemNumber, String itemName, int itemPriority){
+    public Item(int itemNumber, String itemName, int itemPriority) {
         super(itemName);
         this.itemNumber = itemNumber;
         this.itemPriority = itemPriority;
     }
 
-    public Item(int itemNumber, String itemName, int itemPriority, boolean purchased){
+    public Item(int itemNumber, String itemName, int itemPriority, boolean purchased) {
         super(itemName);
         this.itemNumber = itemNumber;
         this.itemName = itemName;
@@ -36,16 +42,19 @@ public class Item extends StandardItem implements Information {
         this.purchased = purchased;
     }
 
-    public boolean equals(Item itemInput){
+    public boolean equals(Item itemInput) {
         // self check
-        if (this == itemInput){
-            return true;}
+        if (this == itemInput) {
+            return true;
+        }
         // check if it's null
-        if (this == null){
-            return false;}
+        if (this == null) {
+            return false;
+        }
         // make sure it's the same type of class
-        if(getClass() != itemInput.getClass()){
-            return false;}
+        if (getClass() != itemInput.getClass()) {
+            return false;
+        }
 
         // compare the fields
         return Objects.equals(itemNumber, itemInput.itemNumber) &&
@@ -72,8 +81,12 @@ public class Item extends StandardItem implements Information {
         itemPrice = itemPriceInput;
     }
 
-    public void setPurchased(boolean itemWasPurchased){
+    public void setPurchased(boolean itemWasPurchased) {
         purchased = itemWasPurchased;
+    }
+
+    public void setNumItemsPurchased(int items) {
+        numItemsPurchased = items;
     }
 
 
@@ -98,12 +111,16 @@ public class Item extends StandardItem implements Information {
         return itemPrice;
     }
 
-    public boolean getPurchased(){
+    public boolean getPurchased() {
         return purchased;
     }
 
     public int getnumItems() {
         return numItems;
+    }
+
+    public int getNumItemsPurchased() {
+        return numItemsPurchased;
     }
 
 
@@ -137,7 +154,8 @@ public class Item extends StandardItem implements Information {
             if (Item.itemNamesToString(list)[i].equals(item))
                 matchCounter++;
         }
-        if (matchCounter > 0){ isNew = false;
+        if (matchCounter > 0) {
+            isNew = false;
         }
         return isNew;
     }
@@ -150,7 +168,8 @@ public class Item extends StandardItem implements Information {
             if (list.get(i).getItemPriority() == item)
                 matchCounter++;
         }
-        if (matchCounter > 0){ isNew = false;
+        if (matchCounter > 0) {
+            isNew = false;
         }
         return isNew;
     }
@@ -166,4 +185,73 @@ public class Item extends StandardItem implements Information {
     }
 
 
+    public static void writeItems(ArrayList<Item> list, boolean purchased, boolean ignorePurchased) { //
+
+        String fileName = null;
+
+        if (ignorePurchased) {
+            fileName = "shoppingList.txt"; // set the name of the output file
+        } else if (!ignorePurchased) {
+            if (purchased) {
+                fileName = "purchased.txt"; // set the name of the output file
+            } else if (!purchased) {
+                fileName = "notPurchased.txt"; // set the name of the output file
+            }
+        }
+        PrintWriter outputStream = null;
+
+        try {
+            outputStream = new PrintWriter(fileName);
+        } catch (FileNotFoundException e) {
+            System.out.println("Error opening the file " +
+                    fileName);
+            System.exit(0);
+        }
+
+        if (ignorePurchased) {
+            for (int i = 0; i < list.size(); i++) {
+                outputStream.println("Item: " + list.get(i).getItemName()
+                        + " | Price: $" + list.get(i).getItemPrice());
+            }
+            outputStream.close();
+        } else if (!ignorePurchased) {
+            for (int i = 0; i < list.size(); i++)
+                if (purchased == (list.get(i).getPurchased())) {
+                    outputStream.println("Item: " + list.get(i).getItemName()
+                            + " | Price: $" + list.get(i).getItemPrice());
+                }
+            outputStream.close();
+        }
+    }
+
+    public static void readItems(ArrayList<Item> list, boolean purchased, boolean ignorePurchased) { //
+
+        String fileName = null;
+        Scanner inputStream = null;
+
+        if (ignorePurchased) {
+            fileName = "shoppingList.txt"; // set the name of the output file
+        } else if (!ignorePurchased) {
+            if (purchased) {
+                fileName = "purchased.txt"; // set the name of the output file
+            } else if (!purchased) {
+                fileName = "notPurchased.txt"; // set the name of the output file
+            }
+        }
+
+        try {
+            inputStream = new Scanner(new File(fileName));
+        } catch (FileNotFoundException e) {
+            System.out.println("Error opening the file " +
+                    fileName);
+            System.exit(0);
+        }
+        while (inputStream.hasNextLine()) {
+            String line = inputStream.nextLine();
+            System.out.println(line);
+        }
+
+
+    }
 }
+

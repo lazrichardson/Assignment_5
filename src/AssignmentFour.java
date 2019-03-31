@@ -9,106 +9,88 @@ public class AssignmentFour {
         Scanner keyboard = new Scanner(System.in);
         String input;
         int intInput;
-        int shoppingListLength = -1;
+        int shoppingListLength = 0;
 
-        ArrayList<Item> itemArray = new ArrayList<Item>(7);
-        ShoppingList cart = new ShoppingList();
+        ArrayList<Item> itemArray = new ArrayList<Item>(shoppingListLength);
         User user = new User();
 
-// request + set the user's budget
-        user.printString("Please input your budget" + "\n");
+
+        // request + set the user's budget
+        user.printString("Please input your bank balance" + "\n");
         user.setBankAccount(keyboard.nextDouble());
+
+        // display budget
         user.printString("You have $");
         user.printDouble(user.getBankAccount());
         user.printString(" in your bank account \n");
-        System.out.println("How many items?");
+
+
+        // set the number of items
+        System.out.println("How many items do you want to add to the shopping list?");
         shoppingListLength = keyboard.nextInt();
 
+        for (int i = 0; i < shoppingListLength; i++) {
+// create item objects
+            itemArray.add(i, new Item());
+        }
 
-// create the items + set prices
+
+        // set prices + set the name + set the number of each to add
         for (int i = 0; i < shoppingListLength; i++) {
 
-            itemArray.add(i, new Item());
-            int itemNum = (i + 1);
-            itemArray.get(i).setItemNumber(itemNum);
-            itemArray.get(i).setItemPrice(5.25 + (i * 4)); // set prices for each item
-        }
+            Item item = itemArray.get(i);
+            item.setItemNumber(i + 1);
 
-// input item names
-        for (int i = 0; i < itemArray.size(); i++) {
+            // set names
+            System.out.println("Input an item name (" + (i + 1) + " of " + (shoppingListLength) + "): ");
+            item.setItemName(keyboard.next());
 
-            boolean isNew = true;
-            do{
-                System.out.println("Input an item name " + (i + 1) + " of " + itemArray.size() + "...\n");
-                input = keyboard.next();
+            // set prices
+            item.setItemPrice(5.25 + (i * 4)); // set prices for each item
 
-                if (!Item.itemInList(itemArray,input)){
-                    System.out.println("That's already on the list.\nOnly one entry per item.\nTry again.\n");
-                } else {
-                    itemArray.get(i).setItemName(input);
-                    isNew = true;
-                    break;
-                }
-            } while(isNew);
-        }
-
-// print items input
-        System.out.println("Here's the list of items you input... \n");
-
-        for (int i = 0; i < itemArray.size(); i++) {
-            System.out.println((i + 1) + ": " + itemArray.get(i).getName());
-        }
-
-// user input for item priorities
-        for (int i = 0; i < itemArray.size(); i++) {
-
-            boolean isNew = true;
-            do { // user input for purchase priorities + rejections of dupes / too high or low
-                System.out.println("\nInput an purchase priority for: " + itemArray.get(i).getName() +
-                        "\nThis number should be between 1 and " + itemArray.size());
+            // user input for purchase priorities + rejections of too high or low
+            do {
+                System.out.println("\nInput an purchase priority for: " + item.getItemName() +
+                        "\nThis number should be between 1 and " + shoppingListLength);
 
                 intInput = keyboard.nextInt();
 
-                if (!Item.priorityInList(itemArray,intInput)){
-                    System.out.println("That's already on the list.\nOnly one entry per item.\nTry again.\n");
-                } else if (intInput > itemArray.size()) {
-                    System.out.println("That's too high!\nNumbers 1 to " + itemArray.size()
+                if (intInput > shoppingListLength) {
+                    System.out.println("That's too high!\nNumbers 1 to " + shoppingListLength
                             + " only.\nTry again.\n");
-                } else if (intInput <= 0){
-                    System.out.println("That's too low!\nNumbers 1 to " + itemArray.size()
+                } else if (intInput <= 0) {
+                    System.out.println("That's too low!\nNumbers 1 to " + shoppingListLength
                             + " only.\nTry again.\n");
                 } else {
-                    itemArray.get(i).setItemPriority(intInput);
-                    isNew = true;
+                    item.setItemPriority(intInput);
                     break;
                 }
-            } while(isNew);
+            } while (item.getItemPriority() == -1);
         }
 
-
-// assign the input to a shopping list
-        cart.setShoppingList(itemArray);
+        // prioritize shopping list
+        user.prioritizeShoppingList(itemArray);
 
 // going shopping
-        user.goShopping(cart); // go shopping
+        user.goShopping(itemArray); // go shopping
 
 // show shopping list
         user.printString("Here is the shopping list before shopping....\n");
-        cart.writeItems(cart, true, true);
-        cart.readItems(cart, true, true);
+        Item.writeItems(itemArray, true, true);
+        Item.readItems(itemArray, true, true);
 
 // show purchases
         System.out.println("\nYou purchased....\n");
         // cart.getPurchasedItems(cart);
-        cart.writeItems(cart, true, false);
-        cart.readItems(cart, true, false);
+        Item.writeItems(itemArray, true, false);
+        Item.readItems(itemArray, true, false);
 
 
 // show not purchased
         System.out.println("\nHere's the shopping list after shopping \na.k.a you didn't have enough money to purchase...\n");
         //  cart.getNotPurchasedItems(cart);
-        cart.writeItems(cart, false, false);
-        cart.readItems(cart, false, false);
+        Item.writeItems(itemArray, false, false);
+        Item.readItems(itemArray, false, false);
 
 // show remainder of bank account
         user.printString("\nHere is your remaining bank balance: $");
@@ -116,5 +98,7 @@ public class AssignmentFour {
 
 
     }
-}
+    }
+
+
 
