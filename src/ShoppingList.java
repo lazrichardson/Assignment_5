@@ -1,5 +1,6 @@
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Arrays;
 import java.io.PrintWriter;
@@ -37,25 +38,25 @@ public class ShoppingList {
         return isEqual;
     }
 
-    public Item[] setShoppingList(Item[] itemArray) { // this sets the shopping list based on the item priorities input by user
+    public Item[] setShoppingList(ArrayList<Item> itemArray) { // this sets the shopping list based on the item priorities input by user
 
-        int[] priorities = new int[itemArray.length];  // stores priorities as int
-        int[] sortedPriorities = new int[itemArray.length]; // stores sorted priorities
-        Item[] sortedItems = new Item[itemArray.length];
+        int[] priorities = new int[itemArray.size()];  // stores priorities as int
+        int[] sortedPriorities = new int[itemArray.size()]; // stores sorted priorities
+        Item[] sortedItems = new Item[itemArray.size()];
 
 
-        for (int i = 0; i < itemArray.length; i++) {
+        for (int i = 0; i < itemArray.size(); i++) {
             // put item priorities into array of ints
-            priorities[i] = itemArray[i].getItemPriority();
+            priorities[i] = itemArray.get(i).getItemPriority();
         }
 
         sortedPriorities = Sorting.bubbleSort(priorities);
 
-        for (int i = 0; i < itemArray.length; i++) {
+        for (int i = 0; i < itemArray.size(); i++) {
 
-            for (int j = 0; j < itemArray.length; j++) {
-                if (sortedPriorities[j] == itemArray[i].getItemPriority()) {
-                    sortedItems[j] = itemArray[i];
+            for (int j = 0; j < itemArray.size(); j++) {
+                if (sortedPriorities[j] == itemArray.get(i).getItemPriority()) {
+                    sortedItems[j] = itemArray.get(i);
                 }
 
             }

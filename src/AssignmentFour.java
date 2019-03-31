@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.PrintWriter;
 import java.io.FileNotFoundException;
@@ -8,8 +9,9 @@ public class AssignmentFour {
         Scanner keyboard = new Scanner(System.in);
         String input;
         int intInput;
+        int shoppingListLength = -1;
 
-        Item[] itemArray = new Item[7];
+        ArrayList<Item> itemArray = new ArrayList<Item>(7);
         ShoppingList cart = new ShoppingList();
         User user = new User();
 
@@ -19,29 +21,31 @@ public class AssignmentFour {
         user.printString("You have $");
         user.printDouble(user.getBankAccount());
         user.printString(" in your bank account \n");
+        System.out.println("How many items?");
+        shoppingListLength = keyboard.nextInt();
+
 
 // create the items + set prices
-        for (int i = 0; i < itemArray.length; i++) {
+        for (int i = 0; i < shoppingListLength; i++) {
 
-            itemArray[i] = new Item();
+            itemArray.add(i, new Item());
             int itemNum = (i + 1);
-            itemArray[0].setItemNumber(itemNum);
-            itemArray[i].setItemPrice(5.25 + (i * 4)); // set prices for each item
+            itemArray.get(i).setItemNumber(itemNum);
+            itemArray.get(i).setItemPrice(5.25 + (i * 4)); // set prices for each item
         }
 
 // input item names
-        for (int i = 0; i < itemArray.length; i++) {
+        for (int i = 0; i < itemArray.size(); i++) {
 
             boolean isNew = true;
             do{
-                System.out.println("Input an item name "+(i+1)+" of "+itemArray.length+ "...\n");
+                System.out.println("Input an item name " + (i + 1) + " of " + itemArray.size() + "...\n");
                 input = keyboard.next();
 
                 if (!Item.itemInList(itemArray,input)){
                     System.out.println("That's already on the list.\nOnly one entry per item.\nTry again.\n");
-                }
-                else {
-                    itemArray[i].setItemName(input);
+                } else {
+                    itemArray.get(i).setItemName(input);
                     isNew = true;
                     break;
                 }
@@ -51,33 +55,30 @@ public class AssignmentFour {
 // print items input
         System.out.println("Here's the list of items you input... \n");
 
-        for (int i = 0; i < itemArray.length; i++) {
-            System.out.println((i + 1) + ": " + itemArray[i].getName());
+        for (int i = 0; i < itemArray.size(); i++) {
+            System.out.println((i + 1) + ": " + itemArray.get(i).getName());
         }
 
 // user input for item priorities
-        for (int i = 0; i < itemArray.length; i++) {
+        for (int i = 0; i < itemArray.size(); i++) {
 
             boolean isNew = true;
             do { // user input for purchase priorities + rejections of dupes / too high or low
-                System.out.println("\nInput an purchase priority for: " + itemArray[i].getName() +
-                        "\nThis number should be between 1 and " + itemArray.length);
+                System.out.println("\nInput an purchase priority for: " + itemArray.get(i).getName() +
+                        "\nThis number should be between 1 and " + itemArray.size());
 
                 intInput = keyboard.nextInt();
 
                 if (!Item.priorityInList(itemArray,intInput)){
                     System.out.println("That's already on the list.\nOnly one entry per item.\nTry again.\n");
-                }
-                else if (intInput > itemArray.length){
-                    System.out.println("That's too high!\nNumbers 1 to " + itemArray.length
+                } else if (intInput > itemArray.size()) {
+                    System.out.println("That's too high!\nNumbers 1 to " + itemArray.size()
                             + " only.\nTry again.\n");
-                }
-                else if (intInput <= 0){
-                    System.out.println("That's too low!\nNumbers 1 to " + itemArray.length
+                } else if (intInput <= 0){
+                    System.out.println("That's too low!\nNumbers 1 to " + itemArray.size()
                             + " only.\nTry again.\n");
-                }
-                else {
-                    itemArray[i].setItemPriority(intInput);
+                } else {
+                    itemArray.get(i).setItemPriority(intInput);
                     isNew = true;
                     break;
                 }
@@ -112,8 +113,8 @@ public class AssignmentFour {
 // show remainder of bank account
         user.printString("\nHere is your remaining bank balance: $");
         System.out.format("%.2f%n", user.getBankAccount());
+
+
     }
-
-
 }
 

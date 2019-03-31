@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Item extends StandardItem implements Information {
@@ -77,13 +78,11 @@ public class Item extends StandardItem implements Information {
 
 
     // Getters
-    public int getItemNumber()
-    {
+    public int getItemNumber() {
         return itemNumber;
     }
 
-    public String getItemName()
-    {
+    public String getItemName() {
         return itemName;
     }
 
@@ -91,13 +90,11 @@ public class Item extends StandardItem implements Information {
         return itemName;
     }
 
-    public int getItemPriority()
-    {
+    public int getItemPriority() {
         return itemPriority;
     }
 
-    public Double getItemPrice()
-    {
+    public Double getItemPrice() {
         return itemPrice;
     }
 
@@ -107,12 +104,12 @@ public class Item extends StandardItem implements Information {
 
 
     // put item names into a list of strings
-    public static String[] itemNamesToString(Item[] list) {
+    public static String[] itemNamesToString(ArrayList<Item> list) {
 
-        String[] newList = new String[list.length];
+        String[] newList = new String[list.size()];
 
-        for (int i = 0; i < list.length; i++) {
-            newList[i] = list[i].getItemName();
+        for (int i = 0; i < list.size(); i++) {
+            newList[i] = list.get(i).getItemName();
         }
         return newList;
     }
@@ -129,10 +126,10 @@ public class Item extends StandardItem implements Information {
     }
 
     // check if item name is already in a given list
-    public static boolean itemInList(Item[] list, String item) {
+    public static boolean itemInList(ArrayList<Item> list, String item) {
         int matchCounter = 0;
         boolean isNew = true;
-        for (int i = 0; i < list.length; i++){
+        for (int i = 0; i < list.size(); i++) {
             if (Item.itemNamesToString(list)[i].equals(item))
                 matchCounter++;
         }
@@ -142,11 +139,11 @@ public class Item extends StandardItem implements Information {
     }
 
     // checks the priority of an item in a given list
-    public static boolean priorityInList(Item[] list, int item) {
+    public static boolean priorityInList(ArrayList<Item> list, int item) {
         int matchCounter = 0;
         boolean isNew = true;
-        for (int i = 0; i < list.length; i++){
-            if (Item.itemPriorityToString(list)[i] == item)
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getItemPriority() == item)
                 matchCounter++;
         }
         if (matchCounter > 0){ isNew = false;
@@ -163,9 +160,6 @@ public class Item extends StandardItem implements Information {
         System.out.println(d);
 
     }
-
-
-
 
 
 }
