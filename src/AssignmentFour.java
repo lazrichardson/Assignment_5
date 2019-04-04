@@ -48,6 +48,11 @@ public class AssignmentFour {
             // set prices
             item.setItemPrice(5.25 + (i * 4)); // set prices for each item
 
+            // set num items
+            System.out.println("How many?");
+            item.setNumItems(keyboard.nextInt());
+            ; // set prices for each item
+
             // user input for purchase priorities + rejections of too high or low
             do {
                 System.out.println("\nInput an purchase priority for: " + item.getItemName() +
@@ -66,10 +71,16 @@ public class AssignmentFour {
                     break;
                 }
             } while (item.getItemPriority() == -1);
+
+
         }
 
         // prioritize shopping list
-        user.prioritizeShoppingList(itemArray);
+        //  user.prioritizeShoppingList(itemArray);
+
+        for (int i = 0; i < itemArray.size(); i++) {
+            System.out.println(itemArray.get(i).getItemName() + "\n" + itemArray.get(i).getItemPriority());
+        }
 
 // going shopping
         user.goShopping(itemArray); // go shopping

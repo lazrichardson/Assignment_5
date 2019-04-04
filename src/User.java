@@ -58,17 +58,28 @@ public class User implements Information {
     }
 
     public void goShopping(ArrayList<Item> list) { // used to purchase items
-        for (int i = 0; i < list.size(); i++) {
 
-            if (list.get(i).getItemPrice() <= bankAccount) {
-                Item item = list.get(i);
-                bankAccount = (bankAccount - item.getItemPrice());
-                item.setPurchased(true);
-                item.setNumItemsPurchased(item.getNumItemsPurchased() + 1);
+        for (int j = 1; j <= list.size(); j++) {
+
+            for (int i = 0; i < list.size(); i++) {
+
+                if (list.get(i).getItemPriority() == j) {
+
+                    while (list.get(i).getItemPrice() <= bankAccount
+                            && list.get(i).getNumItemsPurchased() < list.get(i).getnumItems()) {
+                        Item item = list.get(i);
+
+                        bankAccount = (bankAccount - item.getItemPrice());
+                        item.setNumItemsPurchased(item.getNumItemsPurchased() + 1);
+                        item.setPurchased(true);
+                    }
+
+                }
             }
         }
     }
 
+    /*
     public void prioritizeShoppingList(ArrayList<Item> itemArray) { // this sets the shopping list based on the item priorities input by user
 
         int[] priorities = new int[itemArray.size()];  // stores priorities as int
@@ -86,8 +97,10 @@ public class User implements Information {
         for (int i = 0; i < itemArray.size(); i++) {
 
             for (int j = 0; j < itemArray.size(); j++) {
-                if (sortedPriorities[j] == itemArray.get(i).getItemPriority()) {
+                if (sortedPriorities[j] == itemArray.get(i).getItemPriority()
+                && !itemArray.get(i).getPrioritized()) {
                     sortedItems[j] = itemArray.get(i);
+                    itemArray.get(i).setPrioritized(true);
                 }
 
             }
@@ -99,6 +112,8 @@ public class User implements Information {
         }
 
     }
+
+     */
 
     public void printString(String s) {
         System.out.print(s);

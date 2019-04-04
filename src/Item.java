@@ -14,6 +14,7 @@ public class Item extends StandardItem implements Information {
     private boolean purchased = false;
     private int numItems;
     private int numItemsPurchased;
+    private boolean prioritized;
 
     public Item(String itemName) { // inherited from standardItem
         super(itemName);
@@ -26,6 +27,7 @@ public class Item extends StandardItem implements Information {
         this.itemPrice = -1;
         this.purchased = false;
         this.numItems = -1;
+        this.numItemsPurchased = 0;
     }
 
     public Item(int itemNumber, String itemName, int itemPriority) {
@@ -89,6 +91,13 @@ public class Item extends StandardItem implements Information {
         numItemsPurchased = items;
     }
 
+    public void setPrioritized(boolean isPrioritized) {
+        prioritized = isPrioritized;
+    }
+
+    public void setNumItems(int items) {
+        numItems = items;
+    }
 
     // Getters
     public int getItemNumber() {
@@ -121,6 +130,10 @@ public class Item extends StandardItem implements Information {
 
     public int getNumItemsPurchased() {
         return numItemsPurchased;
+    }
+
+    public boolean getPrioritized() {
+        return prioritized;
     }
 
 
@@ -211,14 +224,16 @@ public class Item extends StandardItem implements Information {
         if (ignorePurchased) {
             for (int i = 0; i < list.size(); i++) {
                 outputStream.println("Item: " + list.get(i).getItemName()
-                        + " | Price: $" + list.get(i).getItemPrice());
+                        + " | Price: $" + list.get(i).getItemPrice()
+                        + " | Purchased: " + list.get(i).getNumItemsPurchased());
             }
             outputStream.close();
         } else if (!ignorePurchased) {
             for (int i = 0; i < list.size(); i++)
                 if (purchased == (list.get(i).getPurchased())) {
                     outputStream.println("Item: " + list.get(i).getItemName()
-                            + " | Price: $" + list.get(i).getItemPrice());
+                            + " | Price: $" + list.get(i).getItemPrice()
+                            + " | Purchased: " + list.get(i).getNumItemsPurchased());
                 }
             outputStream.close();
         }
