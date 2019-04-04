@@ -1,1 +1,3 @@
-Item: pants | Price: $13.25 | Purchased: 0
+Item: pie | Price: $13.25 | Purchased: 0
+Item: more_pie | Price: $17.25 | Purchased: 0
+Item: even_more_pie | Price: $21.25 | Purchased: 0

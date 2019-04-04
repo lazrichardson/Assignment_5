@@ -80,7 +80,7 @@ public class AssignmentFour {
         user.goShopping(itemArray); // go shopping
 
         // show shopping list
-        user.printString("Here is the shopping list before shopping....\n");
+        user.printString("\nHere is the shopping list before shopping....\n");
         Item.writeItems(itemArray, true, true);
         Item.readItems(itemArray, true, true);
 

@@ -1,3 +1,5 @@
 Item: socks | Price: $5.25 | Purchased: 10
-Item: shoes | Price: $9.25 | Purchased: 5
-Item: pants | Price: $13.25 | Purchased: 0
+Item: oranges | Price: $9.25 | Purchased: 102
+Item: pie | Price: $13.25 | Purchased: 0
+Item: more_pie | Price: $17.25 | Purchased: 0
+Item: even_more_pie | Price: $21.25 | Purchased: 0
