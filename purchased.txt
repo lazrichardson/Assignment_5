@@ -1,2 +1,2 @@
-Item: socks | Price: $5.25 | Purchased: 13
-Item: pants | Price: $9.25 | Purchased: 3
+Item: socks | Price: $5.25 | Purchased: 10
+Item: shoes | Price: $9.25 | Purchased: 5
