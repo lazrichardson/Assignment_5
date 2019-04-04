@@ -10,7 +10,6 @@ public class AssignmentFour {
         String input;
         int intInput;
         int shoppingListLength = 0;
-
         ArrayList<Item> itemArray = new ArrayList<Item>(shoppingListLength);
         User user = new User();
 
@@ -28,16 +27,14 @@ public class AssignmentFour {
         user.printDouble(user.getBankAccount());
         user.printString(" in your bank account \n");
 
-
         // set the number of items
         System.out.println("How many items do you want to add to the shopping list?");
         shoppingListLength = keyboard.nextInt();
 
         for (int i = 0; i < shoppingListLength; i++) {
-// create item objects
+            // create item objects
             itemArray.add(i, new Item());
         }
-
 
         // set prices + set the name + set the number of each to add
         for (int i = 0; i < shoppingListLength; i++) {
@@ -79,41 +76,31 @@ public class AssignmentFour {
 
         }
 
-        // prioritize shopping list
-        //  user.prioritizeShoppingList(itemArray);
-
-        for (int i = 0; i < itemArray.size(); i++) {
-            System.out.println(itemArray.get(i).getItemName() + "\n" + itemArray.get(i).getItemPriority());
-        }
-
-// going shopping
+        // going shopping
         user.goShopping(itemArray); // go shopping
 
-// show shopping list
+        // show shopping list
         user.printString("Here is the shopping list before shopping....\n");
         Item.writeItems(itemArray, true, true);
         Item.readItems(itemArray, true, true);
 
-// show purchases
+        // show purchases
         System.out.println("\nYou purchased....\n");
         // cart.getPurchasedItems(cart);
         Item.writeItems(itemArray, true, false);
         Item.readItems(itemArray, true, false);
 
-
-// show not purchased
+        // show not purchased
         System.out.println("\nHere's the shopping list after shopping \na.k.a you didn't have enough money to purchase...\n");
         //  cart.getNotPurchasedItems(cart);
         Item.writeItems(itemArray, false, false);
         Item.readItems(itemArray, false, false);
 
-// show remainder of bank account
+        // show remainder of bank account
         user.printString("\nHere is your remaining bank balance: $");
         System.out.format("%.2f%n", user.getBankAccount());
-
-
     }
-    }
+}
 
 
 
