@@ -14,6 +14,9 @@ public class AssignmentFour {
         ArrayList<Item> itemArray = new ArrayList<Item>(shoppingListLength);
         User user = new User();
 
+        // request name
+        System.out.println("What's your name?");
+        user.setNameOfUser(keyboard.next());
 
         // request + set the user's budget
         user.printString("Please input your bank balance" + "\n");
