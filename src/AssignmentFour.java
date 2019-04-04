@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.PrintWriter;
-import java.io.FileNotFoundException;
 
 public class AssignmentFour {
     public static void main(String[] args) {
@@ -31,6 +29,7 @@ public class AssignmentFour {
         System.out.println("How many items do you want to add to the shopping list?");
         shoppingListLength = keyboard.nextInt();
 
+        // initialize the objects
         for (int i = 0; i < shoppingListLength; i++) {
             // create item objects
             itemArray.add(i, new Item());
@@ -52,7 +51,6 @@ public class AssignmentFour {
             // set num items
             System.out.println("How many?");
             item.setNumItems(keyboard.nextInt());
-            ; // set prices for each item
 
             // user input for purchase priorities + rejections of too high or low
             do {
@@ -72,8 +70,6 @@ public class AssignmentFour {
                     break;
                 }
             } while (item.getItemPriority() == -1);
-
-
         }
 
         // going shopping
