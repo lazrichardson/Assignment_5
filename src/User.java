@@ -125,6 +125,11 @@ public class User implements Information {
 
     }
 
+    public static String removeSpecialCharsSpaces(String inputString) {
+        String outputString = inputString.replaceAll("[^a-zA-Z\\s]", "").replaceAll("\\s+", " ");
+        return outputString;
+    }
+
 
 }
 

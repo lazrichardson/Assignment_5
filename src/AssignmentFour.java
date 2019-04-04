@@ -16,7 +16,8 @@ public class AssignmentFour {
 
         // request name
         System.out.println("What's your name?");
-        user.setNameOfUser(keyboard.next());
+        user.setNameOfUser(User.removeSpecialCharsSpaces(keyboard.nextLine()));
+        System.out.println("Hello " + user.getNameOfUser());
 
         // request + set the user's budget
         user.printString("Please input your bank balance" + "\n");
